@@ -1,0 +1,20 @@
+# This should contain two sets of points
+# SET1 is coordinates in frame 1 and SET2 is coordinates in frame 2
+# --------
+
+SET1
+# Frame 1 coordinates
+# x y z
+1 2 3
+3 5 16
+7 18 9
+2 3 5
+
+# --------
+SET2
+# Frame 2 coordinates
+# x y z
+2.06742538  4.28905948  5.76058141
+7.29290189  8.11081251 17.59648438
+2.16583154 21.33733312 11.8717746
+3.19729806  5.67752653  7.43257034
