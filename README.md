@@ -30,8 +30,11 @@ python calibrate_frames.py ref_points.txt -saveName <filename-for-trans-matrix>
 The transformation matrix is a 4x4 matrix of form:
 
 [[r11, r12, r13, tx],
+
 [r21, r22, r23, ty],
+
 [r31, r32, r33, tz],
+
 [0,   0,   0,   1]]
 
 <hr />
