@@ -27,13 +27,17 @@ python calibrate_frames.py ref_points.txt -saveName <filename-for-trans-matrix>
 
 -saveName argument is optional. The default savename is "trans_matrix"
 
-To validate the algorithm, run the automated validation as below:
+<hr />
+
+### To validate the algorithm, run the automated validation as below:
 ```bash
 python validate_code.py
 ```
 It automatically checks if the algorithm for coordinate transformation has been implemented correctly or not.
 
-To transform a coordinate in frame 1 to frame 2 using an existing transformation matrix, run as below:
+<hr />
+
+### To transform a coordinate in frame 1 to frame 2 using an existing transformation matrix, run as below:
 
 ```bash
 python transform_coord.py trans_matrix.txt -p 1,4,2
