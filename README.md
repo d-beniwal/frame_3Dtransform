@@ -1,10 +1,10 @@
-# frame_transform
-Coordinate frame transformation with rotation and translation support
+# frame_3Dtransform
+Coordinate frame transformation in 3-dimensions with rotation and translation support
 
 <hr />
 
 <ins> **Contents**</ins> :
-- file: helpers.py: Contains helpers functions for calibration and coordinate transformation
+- file: helpers.py: Contains helper functions for calibration and coordinate transformation
 - file: calibrate_frames.py: Runs the frame calibration to generate transformation matrix
 - file: validate_code.py: Automatically tests the transformation algorithm using known rotations and translations
 - file: transform_coord.py: Transform a user input coordinate using a transformation matrix file
@@ -17,7 +17,7 @@ Coordinate frame transformation with rotation and translation support
 ### Running the calibration to create transformation matrix
 
 First create the 'ref_points.txt' file that has coordinates for atleast 3 non-colinear points in both frame 1 and frame 2 coordinate system.
-The calibation code checks for colinearity automatically.
+The calibation code checks colinearity automatically and will throw a WARNING if it cannot detect minimum 3 non-colinear points.
 
 To create the transformation matrix, run the calibation as below:
 
@@ -25,7 +25,7 @@ To create the transformation matrix, run the calibation as below:
 python calibrate_frames.py ref_points.txt -saveName <filename-for-trans-matrix>
 ```
 
--saveName argument is optional. The default savename is "trans_matrix"
+-saveName argument is optional. The default savename is "trans_matrix". The tranformation matrix is saved both as a binary file (.npy) and as a text file (.txt).
 
 The transformation matrix is a 4x4 matrix of form:
 
@@ -37,13 +37,15 @@ The transformation matrix is a 4x4 matrix of form:
 
 [0,   0,   0,   1]]
 
+Here (r11, r12, ..., r33) are rotation matrix components, and (tx,ty,tz) are translation vector components.
+
 <hr />
 
 ### To validate the algorithm, run the automated validation as below:
 ```bash
 python validate_code.py
 ```
-It automatically checks if the algorithm for coordinate transformation has been implemented correctly or not.
+It automatically checks if the algorithm for coordinate transformation has been implemented correctly or not. It works by randomly sampling a set of points in frame 1, then randomly samples rotation angles and frame translation and then calculating points in frame 2 using this known rotation/translation. It then computes the transformation matrix using these set of points in frame 1 and 2. The frame 2 coordinates are then predicted using frame 1 points and transformation matrix. If these predicted frame 2 coordinates match the calculated coordinates (using known rotation/translation), then the transformation matrix is correct.
 
 <hr />
 
@@ -52,6 +54,7 @@ It automatically checks if the algorithm for coordinate transformation has been 
 ```bash
 python transform_coord.py trans_matrix.txt -p 1,4,2
 ```
-The binary file 'trans_matrix.npy' can also be used.
 
 Argument -p is used to provide x,y,z coordinates separated by comma
+
+The binary file 'trans_matrix.npy' can also be used instead of the .txt file.
