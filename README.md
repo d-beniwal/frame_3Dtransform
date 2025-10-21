@@ -17,7 +17,7 @@ Coordinate frame transformation with rotation and translation support
 ### Running the calibration to create transformation matrix
 
 First create the 'ref_points.txt' file that has coordinates for atleast 3 non-colinear points in both frame 1 and frame 2 coordinate system.
-The calibation code checks for colinearity automotically.
+The calibation code checks for colinearity automatically.
 
 To create the transformation matrix, run the calibation as below:
 
